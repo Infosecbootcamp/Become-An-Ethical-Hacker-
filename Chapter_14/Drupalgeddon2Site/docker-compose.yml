@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  drupal:
+    image: drupal:8.5.0
+    container_name: drup
+    environment:
+      DRUPAL_DATABASE_NAME: test
+      DRUPAL_DATABASE_USERNAME: guru
+      DRUPAL_DATABASE_PASSWORD: pass
+      DRUPAL_DATABASE_HOST: drupmysql
+      DRUPAL_DATABASE_PORT: 3306
+    ports:
+      - "9006:80"
+    restart: always
+  mysql:
+    image: mysql
+    container_name: drupmysql
+    environment:
+      MYSQL_DATABASE: myDb
+            MYSQL_USER: guru
+            MYSQL_PASSWORD: guru
+            MYSQL_ROOT_PASSWORD: pass
+    ports:
+      - "3306:3306"

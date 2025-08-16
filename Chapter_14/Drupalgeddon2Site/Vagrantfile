@@ -1,0 +1,24 @@
+ # -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.define "webserv" do |cfg|
+  cfg.vm.box = "kwilczynski/ubuntu-20.04-docker" 
+  cfg.vm.hostname = "webserv2"
+  #cfg.vm.network "forwarded_port", guest: 9092, host: 9092
+  cfg.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", auto_correct: true
+  cfg.vm.network :private_network, ip: "192.168.56.109", gateway: "192.168.56.1"
+  config.vm.provision :docker_compose, yml: "/vagrant/docker-compose.yml", run:"always"
+ cfg.vm.provider "virtualbox" do |vb|
+  vb.name = "webserv2"
+    vb.gui = false
+  vb.customize ["modifyvm", :id, "--memory", 1024]
+  vb.customize ["modifyvm", :id, "--cpus", 1]
+  vb.customize ["modifyvm", :id, "--vram", "16"]
+  vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+  vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+  vb.customize ["modifyvm", :id, "--macaddress1", "auto"]
+  vb.customize ["modifyvm", :id, "--macaddress2", "auto"]
+end
+end
+end
