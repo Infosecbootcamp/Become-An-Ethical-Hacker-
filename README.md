@@ -1,7 +1,7 @@
 # BecomeAnEthicalHacker
 The ultimate book for OSCP students and aspiring ethical hackers. Beware the overpriced bootcamps. Trust the Guru instead.
 
-Get the book at https://ethicalhackingguru.com/shop
+Get the book at [https://a.co/d/7YJfewI]
 
 ## Legal Notice
 
